@@ -1,0 +1,26 @@
+package examen.diagnostico;
+import java.util.Scanner;
+
+public class Ejercicio_2 {
+    public void matriz2(){
+        Scanner teclado = new Scanner(System.in);
+        int n, m;  //Estas son las variables a utilizar
+        
+        System.out.println("Ingresa el número de filas: ");  //Aquí se declaran las medidas de la matriz
+        n = teclado.nextInt();
+        System.out.println("Ingresa el número de columnas: ");
+        m = teclado.nextInt();
+        
+        for(int i = 0; i < n; i++)  //Este ciclo determina las filas y columnas de la matriz
+        {
+            for(int j = 0; j < m; j++)  //Este ciclo se encarga de poner los *
+            {
+                System.out.print("*");
+            }
+            System.out.println();  //Esta instrucción da un salto de linea
+            m-=1;  //Esta instrucción elimina un * por cada una de las filas para cada ciclo diferente
+        }
+    }
+}
+//NOTA 1: Este ejercicio si es el 2° del examen; lo hice NxM porque en este si pude y supe hacerlo.
+//NOTA 2: El primer ejercicio del examen no lo hice porque ese si no supe hacerlo, nunca trabajamos con matrices antes.
