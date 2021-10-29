@@ -1,0 +1,100 @@
+package ejercicios.pkg25.de.octubre;
+
+import java.util.Scanner;
+
+public class Ejercicios25DeOctubre {
+    static class Node{
+        String name;
+        Node next;
+    }
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        int opt= 0, nod= 0, antnod= 0, posnod= 0, intnod1= 0, intnod2= 0;
+        Node top = null;
+        
+        do
+        {
+            System.out.println("1.- Agregar nodo inicial\n"
+                    +"2.- Agregar nodo atras de inicial\n"
+                    +"3.- Agregar nodo adelante de inicial\n"
+                    +"4.- Agregar nodo intermedio\n"
+                    +"5.- Mostrar lista\n"
+                    +"6.- Salir\n");
+            switch(opt= teclado.nextInt())
+            {
+                case 1:
+                    top = new Node();
+                    System.out.println("Ingresa contenido de nodo inicial");
+                    nod= teclado.nextInt();
+                    
+                    top.next = null;
+                    break;
+                case 2:
+                    Node temp;
+                    temp = new Node();
+                    System.out.println("Ingresa contenido de nodo anterior a inicial");
+                    antnod= teclado.nextInt();
+                    
+                    temp.next = top;
+                    top = temp;
+                    break;
+                case 3:
+                    temp = new Node();
+                    System.out.println("Ingresa contenido de nodo posterior a inicial");
+                    posnod= teclado.nextInt();
+                    
+                    temp.next = null;
+                    Node temp2;
+                    temp2 = top;
+                    
+                    while (temp2.next != null)
+                    {
+                        temp2 = temp2.next;
+                    }
+                    temp2.next = temp;
+                    break;
+                case 4:
+                    temp = new Node();
+                    System.out.println("¿Entre que nodos desea introducir este nuevo nodo?\n"
+                            +"1.- Entre nodo anterior y nodo inicial\n"
+                            +"2.- Entre nodo inicial y nodo posterior\n");
+                    switch(opt= teclado.nextInt())
+                    {
+                        case 1:
+                            System.out.println("Ingresa contenido de nodo intermedio");
+                            intnod1= teclado.nextInt();
+                            temp.next = null;
+                            Node temp1;
+                            temp1 = top;
+                            
+                            while (temp1.next != null)
+                            {
+                                temp1= temp1.next;
+                            }
+                            temp1.next= temp;
+                            break;
+                        case 2:
+                            System.out.println("Ingresa contenido de nodo intermedio");
+                            intnod2= teclado.nextInt();
+                            temp.next = null;
+                            Node temp1a;
+                            temp1a= top;
+                            
+                            while (temp1a.next != null)
+                            {
+                                temp1a= temp1a.next;
+                            }
+                            temp1a.next= temp;
+                    }
+                    break;
+                case 5:
+                    System.out.println("DATO "+ "["+antnod+"]\n"
+                            +"DATO "+ "["+intnod1+"]\n"
+                            +"DATO "+ "["+nod+"]\n"
+                            +"DATO "+ "["+intnod2+"]\n"
+                            +"DATO "+ "["+posnod+"]\n");
+            }
+        }
+        while(opt != 6);
+    }
+}
