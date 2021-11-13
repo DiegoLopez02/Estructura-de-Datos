@@ -1,0 +1,90 @@
+package ejercicios.pkg08.de.noviembre;
+
+import java.util.Scanner;
+
+public class Ejercicios08DeNoviembre {
+    Scanner teclado= new Scanner(System.in);
+    
+    static class Node{
+        String dato;
+        Node next;
+    }
+    Node tope= null;
+    Node anterior= null;
+    Node temp;
+    
+    public void Agregar()
+    {
+        System.out.print("Ingresa dato: ");
+        if(tope == null)
+        {
+            tope= new Node();
+            tope.dato= teclado.nextLine();
+            tope.next= null;
+        }
+        else
+        {
+            anterior= tope;
+            temp= new Node();
+            temp.dato= teclado.nextLine();
+            temp.next= tope;
+            tope= temp;
+        }
+    }
+    public void Mostrar()
+    {
+        Node show= new Node();
+        show= tope;
+        if(show == null)
+        {
+            System.out.println("No hay ningun nodo");
+        }
+        else
+        {
+            while(show != null)
+            {
+                System.out.println("DATO---> "+show.dato);
+                show= show.next; 
+            }
+        }
+    }
+    public void Eliminar()
+    {
+        System.out.println("Dato eliminado...");
+        if(tope.next == null)
+        {
+            tope = null;
+        }
+        else
+        {
+            tope= anterior;
+            anterior= anterior.next; 
+        }
+    }
+    public static void main(String[] args)
+    {
+        Scanner teclado= new Scanner(System.in);
+        Ejercicios08DeNoviembre nodo= new Ejercicios08DeNoviembre();
+        int opt= 0;
+        do
+        {
+            System.out.println("1.- Agregar\n"
+                    +"2.- Mostrar\n"
+                    +"3.- Eliminar\n"
+                    +"4.- Salir\n");
+            switch(opt= teclado.nextInt())
+            {
+                case 1:
+                    nodo.Agregar();
+                    break;
+                case 2:
+                    nodo.Mostrar();
+                    break;
+                case 3:
+                    nodo.Eliminar();
+                    break;
+            }
+        }
+        while(opt != 4);
+    }
+}
