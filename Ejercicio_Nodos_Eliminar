@@ -6,28 +6,28 @@ public class Ejercicios08DeNoviembre {
     Scanner teclado= new Scanner(System.in);
     
     static class Node{
-        String dato;
-        Node next;
+        String contenido;
+        Node siguiente;
     }
     Node tope= null;
-    Node anterior= null;
+    Node ant= null;
     Node temp;
     
     public void Agregar()
     {
-        System.out.print("Ingresa dato: ");
+        System.out.print("Ingrese el dato: ");
         if(tope == null)
         {
             tope= new Node();
-            tope.dato= teclado.nextLine();
-            tope.next= null;
+            tope.contenido= teclado.nextLine();
+            tope.siguiente= null;
         }
         else
         {
-            anterior= tope;
+            ant= tope;
             temp= new Node();
-            temp.dato= teclado.nextLine();
-            temp.next= tope;
+            temp.contenido= teclado.nextLine();
+            temp.siguiente= tope;
             tope= temp;
         }
     }
@@ -37,28 +37,28 @@ public class Ejercicios08DeNoviembre {
         show= tope;
         if(show == null)
         {
-            System.out.println("No hay ningun nodo");
+            System.out.println("No existe ningun nodo");
         }
         else
         {
             while(show != null)
             {
-                System.out.println("DATO---> "+show.dato);
-                show= show.next; 
+                System.out.println("DATO---> "+show.contenido);
+                show= show.siguiente; 
             }
         }
     }
     public void Eliminar()
     {
-        System.out.println("Dato eliminado...");
-        if(tope.next == null)
+        System.out.println("El dato fue eliminado");
+        if(tope.siguiente == null)
         {
             tope = null;
         }
         else
         {
-            tope= anterior;
-            anterior= anterior.next; 
+            tope= ant;
+            ant= ant.siguiente; 
         }
     }
     public static void main(String[] args)
