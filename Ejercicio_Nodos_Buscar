@@ -1,0 +1,138 @@
+package ejercicios.pkg11.de.noviembre.pkg2;
+
+import java.util.Scanner;
+
+public class Ejercicios11DeNoviembre2 {
+    Scanner teclado= new Scanner(System.in);
+    
+    static class Node{
+        String contenido;
+        Node siguiente;
+    }
+    Node tope= null;
+    Node ant= null;
+    Node temp;
+    
+    public void Agregar()
+    {
+        System.out.print("Ingrese el dato: ");
+        if(tope == null)
+        {
+            tope= new Node();
+            tope.contenido= teclado.nextLine();
+            tope.siguiente= null;
+        }
+        else
+        {
+            ant= tope;
+            temp= new Node();
+            temp.contenido= teclado.nextLine();
+            temp.siguiente= tope;
+            tope= temp;
+        }
+    }
+    public void Mostrar()
+    {
+        Node show= new Node();
+        show= tope;
+        if(show == null)
+        {
+            System.out.println("No existe ningun nodo");
+        }
+        else
+        {
+            while(show != null)
+            {
+                System.out.println("DATO---> "+show.contenido);
+                show= show.siguiente; 
+            }
+        }
+    }
+    public void Eliminar()
+    {
+        System.out.println("El dato fue eliminado");
+        if(tope.siguiente == null)
+        {
+            tope = null;
+        }
+        else
+        {
+            tope= ant;
+            ant= ant.siguiente; 
+        }
+    }
+    public void Generar()
+    {
+        Node gen= new Node();
+        gen.contenido= teclado.nextLine();
+        gen.siguiente= tope;
+        tope= gen;
+    }
+    public void Buscar()
+    {
+        Node buscar= new Node();
+        buscar= tope;
+        int contador= 0;
+        String elemento;
+        boolean encontrado= false;
+        
+        System.out.print("Ingrese el valor a buscar: ");
+        elemento= teclado.nextLine();
+        
+        if(buscar == null)
+        {
+            System.out.println("La lista se encuentra vacia");
+        }
+        else
+        {
+            while(buscar != null && encontrado != true)
+            {
+                contador++;
+                if(elemento.equals(buscar.contenido))
+                {
+                    encontrado= true;
+                    System.out.println("El valor se encontro en la posición "+contador);
+                }
+                else
+                {
+                    System.out.println("El valor no fue encontrado");
+                }
+                buscar= buscar.siguiente;
+            }
+        }
+    }
+    public static void main(String[] args)
+    {
+        Scanner teclado= new Scanner(System.in);
+        Ejercicios11DeNoviembre2 nodo= new Ejercicios11DeNoviembre2();
+        int opt= 0;
+        do
+        {
+            System.out.println("1.- Agregar\n"
+                    +"2.- Mostrar\n"
+                    +"3.- Eliminar\n"
+                    +"4.- Generar palabra\n"
+                    +"5.- Buscar nodo\n"
+                    +"6.- Salir\n");
+            switch(opt= teclado.nextInt())
+            {
+                case 1:
+                    nodo.Agregar();
+                    break;
+                case 2:
+                    nodo.Mostrar();
+                    break;
+                case 3:
+                    nodo.Eliminar();
+                    break;
+                case 4:
+                    nodo.Generar();
+                    break;
+                case 5:
+                    nodo.Buscar();
+                    break;
+            }
+        }
+        while(opt != 6);
+    }
+}
