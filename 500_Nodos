@@ -1,0 +1,127 @@
+package pkg500.nodos;
+
+import java.util.Scanner;
+
+public class Nodos {
+    
+    static class Nodo{
+        int dato;
+        Nodo next;
+    }
+    Nodo inicio= null;
+    Nodo fin= null;
+    Nodo anterior= null;
+    Nodo actual= null;
+    
+    public void Agregar()
+    {
+        for(int i= 0; i < 500; i++)
+        {
+            if(inicio == null)
+            {
+                int dato= (int)(Math.random()*501);
+                Nodo temp= new Nodo();
+                temp.dato= dato;
+                inicio= temp;
+                fin= temp;
+                inicio.next= null;
+            }
+            else
+            {
+                int dato= (int)(Math.random()*501);
+                Nodo temp= new Nodo();
+                temp.dato= dato;
+                fin.next= temp;
+                temp.next= null;
+                fin= temp;
+            }
+        }
+    }
+    public void Mostrar()
+    {
+        Nodo show= new Nodo();
+        show= inicio;
+        if(show == null)
+        {
+            System.out.println("No existe ningun nodo");
+        }
+        else
+        {
+            while(show != null)
+            {
+                System.out.println("DATO---> "+show.dato);
+                show= show.next; 
+            }
+        }
+    }
+    public void Ordenar3()
+    {
+        anterior= inicio;
+        actual= inicio.next;
+        
+        while(anterior != null)
+        {
+            if(anterior != null)
+            {
+                if(anterior.dato > actual.dato)
+                {
+                    int aux = anterior.dato;
+                    anterior.dato= actual.dato;
+                    actual.dato= aux;
+                }
+            }
+        }
+        anterior= anterior.next;
+        actual= actual.next;
+    }
+    public void Ordenar4()
+    {
+        anterior= inicio;
+        actual= inicio.next;
+        
+        while(anterior != null)
+        {
+            if(anterior != null)
+            {
+                if(anterior.dato < actual.dato)
+                {
+                    int aux = anterior.dato;
+                    anterior.dato= actual.dato;
+                    actual.dato= aux;
+                }
+            }
+        }
+        anterior= anterior.next;
+        actual= actual.next;
+    }
+    public static void main(String[] args) {
+        Scanner teclado= new Scanner(System.in);
+        Nodos nod= new Nodos();
+        int opt= 0;
+        do
+        {
+            System.out.println("1.- Generar (500 Nodos)\n"
+                    +"2.- Mostrar\n"
+                    +"3.- Ordenar de mayor a menor\n"
+                    +"4.- Ordenar de menor a mayor\n"
+                    +"5.- Salir\n");
+            switch(opt= teclado.nextInt())
+            {
+                case 1:
+                    nod.Agregar();
+                    break;
+                case 2:
+                    nod.Mostrar();
+                    break;
+                case 3:
+                    nod.Ordenar3();
+                    break;
+                case 4:
+                    nod.Ordenar4();
+                    break;
+            }
+        }
+        while(opt != 5);
+    }
+    
+}
